@@ -9,7 +9,9 @@ package flyweightexam;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,7 +35,7 @@ public class Client extends JFrame {
 	public Client() {
 		Container contentPane = getContentPane();
 
-		JButton startButton = new JButton("Draw Shapes");
+		JButton startButton = new JButton("Dibujar Figuras");
 		final JPanel panel = new JPanel();
 
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -41,6 +43,14 @@ public class Client extends JFrame {
 		setSize(WIDTH, WIDTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+                
+                //Ubica la ventana en la mitad
+                Toolkit toolkit = Toolkit.getDefaultToolkit();  
+                Dimension screenSize = toolkit.getScreenSize();   
+                int x = (screenSize.width - getWidth()) / 2;  
+                int y = (screenSize.height - getHeight()) / 2;  
+                
+                setLocation(x, y); 
 
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -50,6 +60,7 @@ public class Client extends JFrame {
 					shape.draw(g, getRandomX(), getRandomY(), getRandomWidth(),
 							getRandomHeight(), getRandomColor(),
 							getRandomFill(), getRandomFont());
+                                        System.out.println(i);
 				}
 			}
 		});
